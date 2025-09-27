@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] private int health = 3;
     [SerializeField] private int bombs = 0;
 
+    [Header("UI")]
+    [SerializeField] private HealthBar healthBar;
+
     private bool isWalking = false; // sera usado nas animacoes dps
     void Update()
     {
@@ -38,9 +41,26 @@ public class Player : MonoBehaviour
     }
 
     public void TakeDamage(int damageAmount)
-{
-    health -= damageAmount;
-    Debug.Log("Player tomou dano! Vida atual: " + health);
-    // 
-}
+    {
+        health -= damageAmount;
+
+        // Atualiza a UI da barra de vida com o novo valor
+        healthBar.SetHealth(health);
+
+        print("Player recebeu dano! Vida atual: " + health);
+
+        if (health <= 0)
+        {
+            //Die();
+        }
+    }
+
+    private void Awake()
+    {
+        //rb = GetComponent<Rigidbody2D>();
+        health = MAX_HEALTH;
+
+        // Diz para a HealthBar qual é a vida máxima e a preenche
+        healthBar.SetMaxHealth(MAX_HEALTH);
+    }
 }
