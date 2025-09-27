@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int health = 3;
     [SerializeField] private int bombs = 0;
 
-    private bool isWalking = false; // será usado nas animações dps
+    private bool isWalking = false; // sera usado nas animacoes dps
     void Update()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
@@ -37,10 +37,10 @@ public class Player : MonoBehaviour
         // if bomb key pressed
     }
 
-    public void TakeDamage()
-    {
-        health--;
-        //Check if health 0
-        //end game
-    }
+    public void TakeDamage(int damageAmount)
+{
+    health -= damageAmount;
+    Debug.Log("Player tomou dano! Vida atual: " + health);
+    // 
+}
 }
