@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private CharacterController characterController;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private float speed = 5.0f;
+    private Rigidbody2D rb;
 
     private const int MAX_HEALTH = 5;
     private const int MAX_BOMBS = 3;
@@ -15,12 +15,23 @@ public class Player : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
 
     private bool isWalking = false; // sera usado nas animacoes dps
-    void Update()
+
+    private void Awake()
+    {
+        //rb = GetComponent<Rigidbody2D>();
+        health = MAX_HEALTH;
+
+        // Diz para a HealthBar qual é a vida máxima e a preenche
+        healthBar.SetMaxHealth(MAX_HEALTH);
+
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-
         isWalking = inputVector != Vector2.zero;
-        characterController.Move(inputVector * Time.deltaTime * speed);
+        rb.linearVelocity = inputVector * speed;
     }
 
     public void CollectHealth()
@@ -55,12 +66,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        //rb = GetComponent<Rigidbody2D>();
-        health = MAX_HEALTH;
-
-        // Diz para a HealthBar qual é a vida máxima e a preenche
-        healthBar.SetMaxHealth(MAX_HEALTH);
-    }
 }

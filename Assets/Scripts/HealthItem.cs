@@ -9,7 +9,7 @@ public class HealthItem : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Assuming the player has a Player script with a method to increase health
-            Player player = collision.gameObject.GetComponentInParent<Player>();
+            Player player = collision.gameObject.GetComponent<Player>();
             if (player != null)
             {
                 player.CollectHealth(); // Increase player's health by 1

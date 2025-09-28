@@ -10,7 +10,7 @@ public class enemyDmg : MonoBehaviour
         
         if(collision.gameObject.tag == "Player"){
 
-            Player Player = collision.collider.GetComponent<Player>();
+            Player Player = collision.gameObject.GetComponent<Player>();
             Player.TakeDamage(damage);
         }
     }

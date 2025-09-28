@@ -12,6 +12,7 @@ public class EnemyIA : MonoBehaviour
     // --- Referências de Componentes ---
     private Rigidbody2D rb;
     private Animator animator;
+    private GameObject playerObject;
     private Transform playerTransform;
 
     // --- Controle Interno ---
@@ -24,7 +25,7 @@ public class EnemyIA : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // Encontra o player pela Tag, que é mais performático e confiável que FindObjectOfType.
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
             playerTransform = playerObject.transform;
@@ -40,6 +41,7 @@ public class EnemyIA : MonoBehaviour
     private void FixedUpdate()
     {
         // Se o player for destruído ou não existir, não faz nada.
+        playerTransform = playerObject?.transform;
         if (playerTransform == null) return;
 
         HandleMovement();
