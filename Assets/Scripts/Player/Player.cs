@@ -2,22 +2,36 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private CharacterController characterController;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private float speed = 5.0f;
+    private Rigidbody2D rb;
 
     private const int MAX_HEALTH = 5;
     private const int MAX_BOMBS = 3;
     [SerializeField] private int health = 3;
     [SerializeField] private int bombs = 0;
 
-    private bool isWalking = false; // será usado nas animações dps
-    void Update()
+    [Header("UI")]
+    [SerializeField] private HealthBar healthBar;
+
+    private bool isWalking = false; // sera usado nas animacoes dps
+
+    private void Awake()
+    {
+        //rb = GetComponent<Rigidbody2D>();
+        health = MAX_HEALTH;
+
+        // Diz para a HealthBar qual Ã© a vida mÃ¡xima e a preenche
+        healthBar.SetMaxHealth(MAX_HEALTH);
+
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-
         isWalking = inputVector != Vector2.zero;
-        characterController.Move(inputVector * Time.deltaTime * speed);
+        rb.linearVelocity = inputVector * speed;
     }
 
     public void CollectHealth()
@@ -37,10 +51,19 @@ public class Player : MonoBehaviour
         // if bomb key pressed
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damageAmount)
     {
-        health--;
-        //Check if health 0
-        //end game
+        health -= damageAmount;
+
+        // Atualiza a UI da barra de vida com o novo valor
+        healthBar.SetHealth(health);
+
+        print("Player recebeu dano! Vida atual: " + health);
+
+        if (health <= 0)
+        {
+            //Die();
+        }
     }
+
 }
