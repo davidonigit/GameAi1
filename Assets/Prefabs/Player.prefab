@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f77521b934434345bc40137f4c1d21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  characterController: {fileID: 0}
   gameInput: {fileID: 0}
   speed: 5
   health: 3
