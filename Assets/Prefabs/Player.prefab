@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8992284781264648907}
   - component: {fileID: 279891959409794995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 8459972844132771322}
   - component: {fileID: 5965489916334413190}
   - component: {fileID: 8843233470792067621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -139,9 +139,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   gameInput: {fileID: 0}
   speed: 5
+  bombRadius: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  bombEffectPrefab: {fileID: 191653305412717178, guid: 0f3050b5f37b9c543bff7543d8d79952, type: 3}
   health: 3
-  bombs: 0
+  bombs: 1
   healthBar: {fileID: 0}
+  gameOverPanel: {fileID: 0}
 --- !u!70 &5965489916334413190
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

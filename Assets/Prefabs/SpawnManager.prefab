@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
   mobPrefab: {fileID: 3633661647581356686, guid: 274ad28bbeeb46b4b9f0af52002c5559, type: 3}
+  itemsPrefabs: []
   cronometro: {fileID: 0}
-  initialSpawnDelay: 3
-  minSpawnDelay: 0.5
+  initialMobSpawnDelay: 8
+  minMobSpawnDelay: 0.5
+  initialItemSpawnDelay: 10
+  minItemSpawnDelay: 5
   timeToReachMinDelay: 180
+  chunk: {fileID: 0}

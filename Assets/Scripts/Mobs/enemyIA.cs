@@ -6,43 +6,56 @@ public class EnemyIA : MonoBehaviour
 {
     // --- Variáveis de Configuração---
     [Header("Configurações de Movimento")]
-    [SerializeField] private float moveSpeed = 2.5f;
-    [SerializeField] private float stoppingDistance = 0.5f; // Distância para parar perto do player
+    [SerializeField] private float moveSpeed = 1.5f;
+
+    [Header("Configurações de Combate")]
+    [SerializeField] private float attackRange = 1.5f; // Distância para parar e atacar
+    [SerializeField] private float attackCooldown = 2f; // Tempo (em segundos) entre cada ataque
+    [SerializeField] private float deathAnimationDuration = 1f; // Duração da animação de morte
+
+    [SerializeField] private int attackDamage = 1;
 
     // --- Referências de Componentes ---
     private Rigidbody2D rb;
     private Animator animator;
     private GameObject playerObject;
     private Transform playerTransform;
+    
+    private Player playerScript;
 
     // --- Controle Interno ---
     private bool isFacingRight = true;
+    private float nextAttackTime = 0f;
+    private bool isDead = false;
 
     private void Awake()
     {
-        // Awake é chamado antes do Start. Ideal para pegar referências.
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        // Encontra o player pela Tag, que é mais performático e confiável que FindObjectOfType.
         playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
             playerTransform = playerObject.transform;
+            playerScript = playerObject.GetComponent<Player>();
         }
         else
         {
-            // Se não encontrar o player, desativa a IA para evitar erros.
             Debug.LogError("Player não encontrado! A IA do inimigo foi desativada. Verifique se o seu player tem a tag 'Player'.");
             enabled = false;
         }
     }
 
+    private void Update()
+    {
+        if (isDead || playerTransform == null) return;
+
+        HandleAttack();
+    }
+
     private void FixedUpdate()
     {
-        // Se o player for destruído ou não existir, não faz nada.
-        playerTransform = playerObject?.transform;
-        if (playerTransform == null) return;
+        if (isDead || playerTransform == null) return;
 
         HandleMovement();
         HandleFlip();
@@ -52,29 +65,39 @@ public class EnemyIA : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-        if (distanceToPlayer > stoppingDistance)
+        if (distanceToPlayer > attackRange)
         {
-            // Movimento Ativo
             Vector2 directionToPlayer = (playerTransform.position - transform.position).normalized;
-            
-            // Usamos MovePosition para um movimento mais suave e que respeita a física.
             rb.MovePosition(rb.position + directionToPlayer * moveSpeed * Time.fixedDeltaTime);
-            
-            animator.SetBool("Andando", true);
+            animator.SetBool("isWalking", true);
         }
         else
         {
-            // Para o movimento quando está perto o suficiente.
             rb.linearVelocity = Vector2.zero;
-            animator.SetBool("Andando", false);
+            animator.SetBool("isWalking", false);
+        }
+    }
+
+    private void HandleAttack()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
+        if (distanceToPlayer <= attackRange && Time.time >= nextAttackTime)
+        {
+            animator.SetTrigger("Attack");
+            nextAttackTime = Time.time + attackCooldown;
+
+            // NOVO: Causa dano no jogador
+            if(playerScript != null)
+            {
+                playerScript.TakeDamage(attackDamage);
+            }
         }
     }
 
     private void HandleFlip()
     {
-        // A direção para virar o sprite é baseada na posição do player, não na velocidade.
-        // Isso evita viradas indesejadas se o inimigo colidir com algo.
-        bool shouldFaceRight = playerTransform.position.x > transform.position.x;
+        bool shouldFaceRight = playerTransform.position.x < transform.position.x;
 
         if (isFacingRight != shouldFaceRight)
         {
@@ -86,5 +109,25 @@ public class EnemyIA : MonoBehaviour
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    public void TakeDamage()
+    {
+        if (isDead) return; // Evita chamar a função múltiplas vezes
+
+        isDead = true;
+
+        // Ativa a animação de morte
+        animator.SetTrigger("Hurt");
+
+        // Para completamente o inimigo
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic; // Impede que a física continue afetando-o
+
+        // Desativa o colisor para não interagir mais com o cenário/player
+        GetComponent<Collider2D>().enabled = false;
+        
+        // Destroi o objeto após a animação de morte terminar
+        Destroy(gameObject, deathAnimationDuration);
     }
 }

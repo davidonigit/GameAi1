@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7436960876145385371}
   - component: {fileID: 3705518651752059650}
   - component: {fileID: 1051984917373240250}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mob
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3633661647581356686}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -143,7 +143,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7436960876145385371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202,8 +202,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06eee7765a2ed6a40a0fb5528efe6792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIA
-  moveSpeed: 2.5
-  stoppingDistance: 0.5
+  moveSpeed: 1
+  attackRange: 1.5
+  attackCooldown: 2
+  deathAnimationDuration: 1
 --- !u!114 &1051984917373240250
 MonoBehaviour:
   m_ObjectHideFlags: 0
