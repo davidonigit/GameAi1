@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Garante que o Player tenha um Animator
+[RequireComponent(typeof(Animator))] 
 public class Player : MonoBehaviour
 {
     [Header("Configurações")]
@@ -10,6 +12,7 @@ public class Player : MonoBehaviour
 
     [Header("Efeitos e Animações")]
     [SerializeField] private GameObject bombEffectPrefab;
+    private Animator animator; // 1. Referência para o Animator
 
     private Rigidbody2D rb;
 
@@ -20,25 +23,32 @@ public class Player : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private GameObject gameOverPanel; // Arraste seu painel de Game Over aqui
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private BombUI bombUI;
 
-    private bool isWalking = false;
     private bool isDead = false;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>(); // 2. Pega o componente Animator no início
+        
         health = MAX_HEALTH;
         healthBar.SetMaxHealth(MAX_HEALTH);
 
-        // Garante que a tela de Game Over comece desativada
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(false);
         }
+
+        if(bombUI != null)
+        {
+            bombUI.UpdateBombIcons(bombs);
+        }
     }
 
-    private void Start()
+    // ... (Start, GameInput_OnAttackAction, etc. continuam iguais) ...
+     private void Start()
     {
         // Se inscreve no evento de "bomba" do GameInput
         gameInput.OnAttackAction += GameInput_OnAttackAction;
@@ -57,15 +67,27 @@ public class Player : MonoBehaviour
     {
         if (isDead)
         {
-            rb.linearVelocity = Vector2.zero; // Garante que o jogador pare de se mover ao morrer
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-        isWalking = inputVector != Vector2.zero;
+        bool isWalking = inputVector != Vector2.zero;
         rb.linearVelocity = inputVector * speed;
+        
+        // --- LÓGICA DA ANIMAÇÃO ---
+        // 3. Envia os dados de movimento para o Animator
+        animator.SetBool("isWalking", isWalking);
+        
+        // Só atualiza a direção se estiver andando, para manter a última direção ao parar
+        if(isWalking)
+        {
+            animator.SetFloat("moveX", inputVector.x);
+            animator.SetFloat("moveY", inputVector.y);
+        }
     }
 
+    // ... (O resto do seu código, CollectHealth, UseBomb, Die, etc. continua igual) ...
     public void CollectHealth()
     {
         if (health < MAX_HEALTH) health++;
@@ -75,49 +97,52 @@ public class Player : MonoBehaviour
 
     public void CollectBomb()
     {
-        if (bombs < MAX_BOMBS) bombs++;
-        // TODO: Atualizar a UI de bombas aqui
-        print("Bomb collected: " + bombs);
+        if (bombs < MAX_BOMBS)
+        {
+            bombs++;
+            
+            // 3. Atualiza a UI ao coletar uma bomba
+            if (bombUI != null)
+            {
+                bombUI.UpdateBombIcons(bombs);
+            }
+            
+            print("Bomb collected: " + bombs);
+        }
     }
 
-    private void UseBomb()
+     private void UseBomb()
     {
         bombs--;
         print("Bomba usada! Bombas restantes: " + bombs);
-        // TODO: Atualizar a UI de bombas aqui
+        if (bombUI != null)
+        {
+            bombUI.UpdateBombIcons(bombs);
+        }
 
         if (bombEffectPrefab != null)
         {
-            // 1. Instancia o prefab e GUARDA a referência dele em uma variável.
             GameObject bombInstance = Instantiate(bombEffectPrefab, transform.position, Quaternion.identity);
-
-            // 2. Pega o script de escala da instância que acabamos de criar.
             BombEffectScaler scaler = bombInstance.GetComponent<BombEffectScaler>();
-
-            // 3. Se o script existir, chama o método para ajustar a escala, passando o raio.
             if (scaler != null)
             {
                 scaler.SetScaleFromRadius(bombRadius);
             }
         }
 
-        // Detecta todos os colisores dentro de um círculo na posição do jogador
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, bombRadius, enemyLayer);
-
-        // Passa por cada inimigo atingido e aplica o dano
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             EnemyIA enemy = enemyCollider.GetComponent<EnemyIA>();
             if (enemy != null)
             {
-                enemy.TakeDamage(); // Chama o método de dano do inimigo
+                enemy.TakeDamage(); 
             }
         }
     }
-
     public void TakeDamage(int damageAmount)
     {
-        if (isDead) return; // Não pode tomar dano se já estiver morto
+        if (isDead) return;
 
         health -= damageAmount;
         healthBar.SetHealth(health);
@@ -133,11 +158,8 @@ public class Player : MonoBehaviour
     {
         isDead = true;
         print("Player Morreu! Game Over.");
-
-        // Pausa o jogo
         Time.timeScale = 0f;
 
-        // Ativa a tela de Game Over
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);

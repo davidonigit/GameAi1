@@ -49,7 +49,7 @@ MonoBehaviour:
   cronometro: {fileID: 0}
   initialMobSpawnDelay: 8
   minMobSpawnDelay: 0.5
-  initialItemSpawnDelay: 10
-  minItemSpawnDelay: 5
+  initialItemSpawnDelay: 3
+  minItemSpawnDelay: 2
   timeToReachMinDelay: 180
   chunk: {fileID: 0}
