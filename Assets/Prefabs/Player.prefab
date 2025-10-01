@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8992284781264648907}
   - component: {fileID: 279891959409794995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,10 +99,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 371592526622658098}
+  - component: {fileID: 7540804395907503037}
   - component: {fileID: 8459972844132771322}
   - component: {fileID: 5965489916334413190}
   - component: {fileID: 8843233470792067621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -125,6 +126,28 @@ Transform:
   - {fileID: 8992284781264648907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &7540804395907503037
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072373266406462766}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 414a10a08a1b2844b867b4e684204769, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8459972844132771322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,9 +162,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   gameInput: {fileID: 0}
   speed: 5
+  bombRadius: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  bombEffectPrefab: {fileID: 191653305412717178, guid: 0f3050b5f37b9c543bff7543d8d79952, type: 3}
   health: 3
-  bombs: 0
-  healthBar: {fileID: 0}
+  bombs: 1
+  healthBar: {fileID: 2523808243398817524, guid: 9c4b18844547d2c46a4905e4683fb5ae, type: 3}
+  gameOverPanel: {fileID: 3152031443159108944, guid: fa17c4dd5c9049c40a537b5836d4c0c0, type: 3}
+  bombUI: {fileID: 6205696171737871616, guid: 3da74f14caf6cc14fadbb2fd5a8ed251, type: 3}
 --- !u!70 &5965489916334413190
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
