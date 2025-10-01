@@ -225,11 +225,11 @@ PrefabInstance:
       objectReference: {fileID: 1213136331}
     - target: {fileID: 7393888517843878764, guid: 89298c426ec1fc7489738edb6481679e, type: 3}
       propertyPath: minutosParaVitoria
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7393888517843878764, guid: 89298c426ec1fc7489738edb6481679e, type: 3}
       propertyPath: segundosParaVitoria
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8379527029229553150, guid: 89298c426ec1fc7489738edb6481679e, type: 3}
       propertyPath: m_Pivot.x
@@ -813,6 +813,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2058494214}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &724669321 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4025668353226446107, guid: 89298c426ec1fc7489738edb6481679e, type: 3}
+  m_PrefabInstance: {fileID: 257430113}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d1c6c7227d99042ab680525e5aca64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthBar
 --- !u!1001 &791647203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -932,9 +943,25 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8459972844132771322, guid: e5fbf8a23912c6642aa9992f796a0858, type: 3}
+      propertyPath: bombUI
+      value: 
+      objectReference: {fileID: 1376669233}
+    - target: {fileID: 8459972844132771322, guid: e5fbf8a23912c6642aa9992f796a0858, type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459972844132771322, guid: e5fbf8a23912c6642aa9992f796a0858, type: 3}
       propertyPath: gameInput
       value: 
       objectReference: {fileID: 1312516188}
+    - target: {fileID: 8459972844132771322, guid: e5fbf8a23912c6642aa9992f796a0858, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 724669321}
+    - target: {fileID: 8459972844132771322, guid: e5fbf8a23912c6642aa9992f796a0858, type: 3}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 168309900}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1381,6 +1408,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36aa212ab427b894c9f77c59b0380dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &1376669233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6205696171737871616, guid: 3da74f14caf6cc14fadbb2fd5a8ed251, type: 3}
+  m_PrefabInstance: {fileID: 7807670735534867661}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000ef6115ed942648af1b3328785bef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BombUI
 --- !u!1001 &1398722390
 PrefabInstance:
   m_ObjectHideFlags: 0
