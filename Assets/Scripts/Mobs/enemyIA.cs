@@ -4,18 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class EnemyIA : MonoBehaviour
 {
-    // --- Variáveis de Configuração---
     [Header("Configurações de Movimento")]
     [SerializeField] private float moveSpeed = 1.5f;
 
     [Header("Configurações de Combate")]
-    [SerializeField] private float attackRange = 1.5f; // Distância para parar e atacar
-    [SerializeField] private float attackCooldown = 2f; // Tempo (em segundos) entre cada ataque
-    [SerializeField] private float deathAnimationDuration = 1f; // Duração da animação de morte
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float deathAnimationDuration = 1f;
 
     [SerializeField] private int attackDamage = 1;
 
-    // --- Referências de Componentes ---
     private Rigidbody2D rb;
     private Animator animator;
     private GameObject playerObject;
@@ -23,7 +21,6 @@ public class EnemyIA : MonoBehaviour
     
     private Player playerScript;
 
-    // --- Controle Interno ---
     private bool isFacingRight = true;
     private float nextAttackTime = 0f;
     private bool isDead = false;
@@ -87,7 +84,6 @@ public class EnemyIA : MonoBehaviour
             animator.SetTrigger("Attack");
             nextAttackTime = Time.time + attackCooldown;
 
-            // NOVO: Causa dano no jogador
             if(playerScript != null)
             {
                 playerScript.TakeDamage(attackDamage);
@@ -113,21 +109,22 @@ public class EnemyIA : MonoBehaviour
 
     public void TakeDamage()
     {
-        if (isDead) return; // Evita chamar a função múltiplas vezes
+        if (isDead) return;
 
         isDead = true;
 
-        // Ativa a animação de morte
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.RegisterEnemyKill();
+        }
+
         animator.SetTrigger("Hurt");
 
-        // Para completamente o inimigo
         rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Kinematic; // Impede que a física continue afetando-o
+        rb.bodyType = RigidbodyType2D.Kinematic;
 
-        // Desativa o colisor para não interagir mais com o cenário/player
         GetComponent<Collider2D>().enabled = false;
         
-        // Destroi o objeto após a animação de morte terminar
         Destroy(gameObject, deathAnimationDuration);
     }
 }
