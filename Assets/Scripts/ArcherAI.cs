@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class CompanionAI : MonoBehaviour
+public class ArcherAI : MonoBehaviour
 {
+    public enum NodeStatus { Failure, Success, Running }
+
     [Header("Alvo Principal")]
     [SerializeField] private Transform playerTransform;
 
@@ -20,7 +22,6 @@ public class CompanionAI : MonoBehaviour
     private Transform currentTarget;
     private Vector2 currentOffset;
 
-    // Referência para virar o sprite
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
@@ -44,12 +45,11 @@ public class CompanionAI : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        FindNearestEnemy();
-        HandleMovement();
-        HandleAttack();
+        UpdateSensors();
+        RunBehaviourTree();
     }
 
-    private void FindNearestEnemy()
+    private void UpdateSensors()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(playerTransform.position, detectionRadius, enemyLayer);
         
@@ -68,49 +68,91 @@ public class CompanionAI : MonoBehaviour
         currentTarget = nearest;
     }
 
-    private void HandleMovement()
+    private void RunBehaviourTree()
     {
-        Vector2 targetPositionOnCircle;
+        TryAttackSequence();
+        MovementSelector();
+    }
 
+    private NodeStatus TryAttackSequence()
+    {
+        if (currentTarget == null) return NodeStatus.Failure;
+
+        if (Time.time < nextAttackTime) return NodeStatus.Failure;
+
+        Vector2 combatPos = GetCombatPosition();
+        float distanceToIdealPos = Vector2.Distance(transform.position, combatPos);
+
+        if (distanceToIdealPos > 0.5f) return NodeStatus.Failure;
+
+        PerformAttack();
+        return NodeStatus.Success;
+    }
+
+    private NodeStatus MovementSelector()
+    {
         if (currentTarget != null)
         {
-            // MODO COMBATE: Fica entre o Player e o Inimigo
-            Vector2 directionToEnemy = (currentTarget.position - playerTransform.position).normalized;
-            targetPositionOnCircle = (Vector2)playerTransform.position + (directionToEnemy * orbitRadius);
-            
-            // Olha para o INIMIGO
-            HandleFlip(currentTarget.position);
+            MoveCombat();
+            return NodeStatus.Running;
         }
-        else
+
+        MoveIdle();
+        return NodeStatus.Running;
+    }
+
+    private void PerformAttack()
+    {
+        if (arrowPrefab != null && firePoint != null)
         {
-            // MODO IDLE: Segue o offset relativo
-            targetPositionOnCircle = (Vector2)playerTransform.position + currentOffset;
-            
-            // Olha para o JOGADOR
-            HandleFlip(playerTransform.position);
+            Vector2 direction = currentTarget.position - firePoint.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle - 45f);
+
+            Instantiate(arrowPrefab, firePoint.position, rotation);
+            nextAttackTime = Time.time + attackCooldown;
         }
+    }
 
-        // Move suavemente
-        transform.position = Vector2.MoveTowards(transform.position, targetPositionOnCircle, moveSpeed * Time.deltaTime);
+    private void MoveCombat()
+    {
+        Vector2 targetPosition = GetCombatPosition();
+        MoveTowards(targetPosition);
+        HandleFlip(currentTarget.position);
+    }
 
-        // Trava na órbita exata
+    private void MoveIdle()
+    {
+        Vector2 targetPosition = (Vector2)playerTransform.position + currentOffset;
+        MoveTowards(targetPosition);
+        HandleFlip(playerTransform.position);
+    }
+
+    private Vector2 GetCombatPosition()
+    {
+        Vector2 directionToEnemy = (currentTarget.position - playerTransform.position).normalized;
+        return (Vector2)playerTransform.position + (directionToEnemy * orbitRadius);
+    }
+
+    private void MoveTowards(Vector2 targetPos)
+    {
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+
         Vector2 finalDirection = (transform.position - playerTransform.position).normalized;
         transform.position = (Vector2)playerTransform.position + (finalDirection * orbitRadius);
 
-        // Atualiza o offset para manter a posição relativa quando sair de combate
-        currentOffset = finalDirection * orbitRadius;
+        if (currentTarget == null)
+        {
+            currentOffset = finalDirection * orbitRadius;
+        }
     }
 
-    // --- NOVA LÓGICA DE FLIP (Mantém o NPC em pé) ---
     private void HandleFlip(Vector3 targetPosition)
     {
-        // Verifica se precisa virar
         if (targetPosition.x < transform.position.x)
         {
-            // Vira para ESQUERDA
             spriteRenderer.flipX = true;
 
-            // Inverte a posição do FirePoint para a esquerda (negativo)
             if (firePoint.localPosition.x > 0)
             {
                 Vector3 newPos = firePoint.localPosition;
@@ -120,10 +162,8 @@ public class CompanionAI : MonoBehaviour
         }
         else
         {
-            // Vira para DIREITA
             spriteRenderer.flipX = false;
 
-            // Restaura a posição do FirePoint para a direita (positivo)
             if (firePoint.localPosition.x < 0)
             {
                 Vector3 newPos = firePoint.localPosition;
@@ -133,35 +173,5 @@ public class CompanionAI : MonoBehaviour
         }
         
         transform.rotation = Quaternion.identity;
-    }
-
-    private void HandleAttack()
-    {
-        if (currentTarget == null) return;
-
-        float distanceToTargetPos = Vector2.Distance(transform.position, playerTransform.position + ((currentTarget.position - playerTransform.position).normalized * orbitRadius));
-        
-        if (distanceToTargetPos < 0.5f && Time.time >= nextAttackTime)
-        {
-            Shoot();
-            nextAttackTime = Time.time + attackCooldown;
-        }
-    }
-
-    private void Shoot()
-    {
-        if (arrowPrefab != null && firePoint != null)
-        {
-            // 1. Calcula a direção do inimigo
-            Vector2 direction = currentTarget.position - firePoint.position;
-            
-            // 2. Calcula o ângulo em graus
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            // 3. Aplica o Offset de -45 graus porque seu sprite aponta para diagonal
-            Quaternion rotation = Quaternion.Euler(0, 0, angle - 45f);
-
-            Instantiate(arrowPrefab, firePoint.position, rotation);
-        }
     }
 }

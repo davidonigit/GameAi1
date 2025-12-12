@@ -1239,6 +1239,14 @@ PrefabInstance:
       propertyPath: cronometro
       value: 
       objectReference: {fileID: 1480654705}
+    - target: {fileID: 4657144234235126830, guid: 1f060dfa7d3fb3241b683b39da982bc4, type: 3}
+      propertyPath: minItemSpawnDelay
+      value: 3.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657144234235126830, guid: 1f060dfa7d3fb3241b683b39da982bc4, type: 3}
+      propertyPath: initialItemSpawnDelay
+      value: 2.98
+      objectReference: {fileID: 0}
     - target: {fileID: 7600978313138928046, guid: 1f060dfa7d3fb3241b683b39da982bc4, type: 3}
       propertyPath: m_Name
       value: Chunk (4)
