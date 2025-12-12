@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 // Garante que o Player tenha um Animator
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private BombUI bombUI;
+    [SerializeField] private GameObject healEffect;
 
     private bool isDead = false;
 
@@ -47,7 +49,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    // ... (Start, GameInput_OnAttackAction, etc. continuam iguais) ...
      private void Start()
     {
         // Se inscreve no evento de "bomba" do GameInput
@@ -87,12 +88,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    // ... (O resto do seu código, CollectHealth, UseBomb, Die, etc. continua igual) ...
     public void CollectHealth()
     {
         if (health < MAX_HEALTH) health++;
         healthBar.SetHealth(health); // Atualiza a UI ao coletar vida
         print("Health collected: " + health);
+        StartCoroutine(HealVisualEffect());
+    }
+
+    private IEnumerator HealVisualEffect()
+    {
+        float duration = 0.7f;
+
+        healEffect.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        healEffect.SetActive(false);
     }
 
     public void CollectBomb()

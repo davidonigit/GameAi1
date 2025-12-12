@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 61762326d7d717540a37d0e48390d617
+guid: d8c843931ad1c9640bb8b6604b7c334b
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -149,188 +149,56 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: persian archer_0
+      name: persian healer_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 70
-        width: 21
-        height: 29
+        x: 0
+        y: 98
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 8, y: 2, z: 6, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8c88f149be7e3b4d8fdf079e9484f35
+      internalID: -40627575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 98
+        width: 32
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 26a05ffebc9cb9120800000000000000
-      internalID: 2421751102383131234
+      spriteID: 90b76b8844d87fd48b3d72304fc3afb9
+      internalID: 808513909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: persian archer_1
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 99
-        width: 13
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c537440f1635f2e70800000000000000
-      internalID: 9092577852792271708
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: persian archer_2
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 99
-        width: 16
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c4fc9c57c8dd7db0800000000000000
-      internalID: -4792436077688458040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: persian archer_3
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 70
-        width: 22
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c83097172bd0ff930800000000000000
-      internalID: 4179074039282205580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: persian archer_4
+      name: persian healer_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 70
-        width: 21
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45524b23ca645fee0800000000000000
-      internalID: -1227997617989606060
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: persian archer_5
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 99
-        width: 16
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2dadcf27970618530800000000000000
-      internalID: 3855468830742338258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: persian archer_6
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 99
-        width: 20
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b3d588f7b87dc140800000000000000
-      internalID: 4741578714234868660
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: persian archer_7
-      rect:
-        serializedVersion: 2
-        x: 93
-        y: 70
-        width: 22
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de43dfce9f26d4580800000000000000
-      internalID: -8841301667896019731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: persian archer_8
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 11
-        width: 19
+        y: 98
+        width: 32
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -338,43 +206,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fa183689f60aef310800000000000000
-      internalID: 1440765331963609519
+      spriteID: 31885833e01262a489cbd68fbbd82fb4
+      internalID: -2025785310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: persian archer_9
+      name: persian healer_3
       rect:
         serializedVersion: 2
-        x: 33
-        y: 41
-        width: 20
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd9bed5e2c5dc8ae0800000000000000
-      internalID: -1545625539037972003
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: persian archer_10
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 41
-        width: 26
+        x: 96
+        y: 98
+        width: 32
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -382,21 +228,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cf8ba1ab6ccc733c0800000000000000
-      internalID: -4379806958696613636
+      spriteID: e911cdd79b683b94f99c1112e8b1391b
+      internalID: 2136305714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: persian archer_11
+      name: persian healer_4
       rect:
         serializedVersion: 2
-        x: 92
-        y: 40
-        width: 19
+        x: 0
+        y: 68
+        width: 32
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -404,32 +250,208 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: db8196a9755c4a210800000000000000
-      internalID: 1343415568906655933
+      spriteID: 71afc47b57cfaae49b4e1e1115187b39
+      internalID: -1540882142
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: persian archer_12
+      name: persian healer_5
       rect:
         serializedVersion: 2
-        x: 28
-        y: 11
-        width: 27
-        height: 11
+        x: 32
+        y: 68
+        width: 32
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3f81e8da63f603590800000000000000
-      internalID: -7696529482545489677
+      spriteID: d8268e82c1471014791b72ffc2652ef4
+      internalID: 457439682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 68
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd1983db13fb9a94eae4d98a7b49a72d
+      internalID: 1067128889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 68
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a83743aa69d1c8c41a2e13c88ea3cbb6
+      internalID: -1123598711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 38
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ed6c68e4fe24645ba1f9eb1f9f91ee
+      internalID: 1420162923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 38
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19e7b417f51568f41bfde17b26cfc2ce
+      internalID: -1567322675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 38
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e79cbd093e9a3ff46acb958e4df37cf2
+      internalID: -1970114833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 38
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a7f6f0f53e93834e868fe216e2c27c3
+      internalID: 117801461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee0e09aa5c874947ac4d3e6d1b1d037
+      internalID: -982915197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: persian healer_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 8
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 604d4e2257af21f41b5dab6ffa098325
+      internalID: -37222695
       vertices: []
       indices: 
       edges: []
@@ -446,21 +468,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":30.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      persian archer_0: 2421751102383131234
-      persian archer_1: 9092577852792271708
-      persian archer_10: -4379806958696613636
-      persian archer_11: 1343415568906655933
-      persian archer_12: -7696529482545489677
-      persian archer_2: -4792436077688458040
-      persian archer_3: 4179074039282205580
-      persian archer_4: -1227997617989606060
-      persian archer_5: 3855468830742338258
-      persian archer_6: 4741578714234868660
-      persian archer_7: -8841301667896019731
-      persian archer_8: 1440765331963609519
-      persian archer_9: -1545625539037972003
+      persian healer_0: -40627575
+      persian healer_1: 808513909
+      persian healer_10: -1970114833
+      persian healer_11: 117801461
+      persian healer_12: -982915197
+      persian healer_13: -37222695
+      persian healer_2: -2025785310
+      persian healer_3: 2136305714
+      persian healer_4: -1540882142
+      persian healer_5: 457439682
+      persian healer_6: 1067128889
+      persian healer_7: -1123598711
+      persian healer_8: 1420162923
+      persian healer_9: -1567322675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
