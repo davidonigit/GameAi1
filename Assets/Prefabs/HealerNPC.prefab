@@ -110,4 +110,4 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  healCooldown: 5
+  healCooldown: 15

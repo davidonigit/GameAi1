@@ -96,6 +96,11 @@ public class Player : MonoBehaviour
         StartCoroutine(HealVisualEffect());
     }
 
+    public bool IsFullHealth()
+    {
+        return health == MAX_HEALTH;
+    }
+
     private IEnumerator HealVisualEffect()
     {
         float duration = 0.7f;
