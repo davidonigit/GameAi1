@@ -21,4 +21,9 @@ public class ChunksController : MonoBehaviour
             }
         }
     }
+
+    public Chunk[] GetChunks()
+    {
+        return chunks;
+    }
 }

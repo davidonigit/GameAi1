@@ -15,6 +15,8 @@ public class StatueController : MonoBehaviour
     private bool isUnlocked = false;
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private GameObject npcPrefab;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -66,7 +68,8 @@ public class StatueController : MonoBehaviour
         if (interactPrompt != null)
             interactPrompt.SetActive(false);
 
-        // A lógica para instanciar/ativar o NPC entrará aqui
+        Instantiate(npcPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

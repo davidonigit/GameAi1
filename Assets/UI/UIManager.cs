@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     {
         if (killCountText != null)
         {
-            killCountText.text = "Inimigos: " + enemiesKilled.ToString();
+            killCountText.text = "Kills: " + enemiesKilled.ToString();
         }
     }
 

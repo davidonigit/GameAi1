@@ -258,7 +258,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   bombEffectPrefab: {fileID: 191653305412717178, guid: 0f3050b5f37b9c543bff7543d8d79952, type: 3}
-  health: 3
+  health: 5
   bombs: 1
   healthBar: {fileID: 2523808243398817524, guid: 9c4b18844547d2c46a4905e4683fb5ae, type: 3}
   gameOverPanel: {fileID: 3152031443159108944, guid: fa17c4dd5c9049c40a537b5836d4c0c0, type: 3}
