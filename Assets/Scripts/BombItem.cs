@@ -9,7 +9,7 @@ public class BombItem : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Player player = collision.gameObject.GetComponentInParent<Player>();
-            if (player != null)
+            if (player != null && !player.HasMaxBombs())
             {
                 player.CollectBomb();
                 Destroy(gameObject);

@@ -101,6 +101,11 @@ public class Player : MonoBehaviour
         return health == MAX_HEALTH;
     }
 
+    public bool HasMaxBombs()
+    {
+        return bombs == MAX_BOMBS;
+    }
+
     private IEnumerator HealVisualEffect()
     {
         float duration = 0.7f;

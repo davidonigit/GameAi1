@@ -10,7 +10,7 @@ public class HealthItem : MonoBehaviour
         {
             // Assuming the player has a Player script with a method to increase health
             Player player = collision.gameObject.GetComponent<Player>();
-            if (player != null)
+            if (player != null && !player.IsFullHealth())
             {
                 player.CollectHealth(); // Increase player's health by 1
                 Destroy(gameObject); // Destroy the health item after pickup
