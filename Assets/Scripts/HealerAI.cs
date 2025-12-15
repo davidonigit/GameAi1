@@ -92,7 +92,7 @@ public class HealerAI : MonoBehaviour
 
     // --- NÓS ---
 
-    // Sequence: Verifica Cooldown -> Verifica se Player precisa (opcional) -> Cura
+    // Sequence: Verifica Cooldown -> Verifica se Player precisa -> Cura
     private NodeStatus TryHealSequence()
     {
         // Condição: Cooldown
